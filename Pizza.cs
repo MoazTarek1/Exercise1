@@ -21,6 +21,7 @@ namespace OrderPizza
     {
         public string Name { get; set; }
         public double Price { get; set; }
+        
         public Size(String name, double price)
         {
             this.Name = name;
@@ -32,6 +33,7 @@ namespace OrderPizza
     {
         public String Name { get; set; }
         public double Price { get; set; }
+
         public Topping(String name, double price)
         {
             this.Name = name;
