@@ -6,9 +6,7 @@ namespace OrderPizza
     public class Pizza
     {
         public string Name { get; set; }
-
         public List<Topping> Toppings { get; set; } = new();
-
         public Size PizzaSize { get; set; }
 
         public Pizza (string name, List<Topping> toppings, Size pizzaSize)
@@ -22,9 +20,7 @@ namespace OrderPizza
     public class Size
     {
         public string Name { get; set; }
-
         public double Price { get; set; }
-
         public Size(String name, double price)
         {
             this.Name = name;
@@ -35,9 +31,7 @@ namespace OrderPizza
     public class Topping
     {
         public String Name { get; set; }
-
         public double Price { get; set; }
-
         public Topping(String name, double price)
         {
             this.Name = name;
