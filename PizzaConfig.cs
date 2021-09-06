@@ -2,9 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.IO;
+using System.Linq;
 
 namespace OrderPizza
 {
+    public enum Size 
+    {
+            Unspecified = 0,
+            Small = 120,
+            Medium = 150,
+            Large = 175
+    }
     public class PizzaConfig
     {
         private string _menu = "Menu.json";
@@ -24,29 +32,41 @@ namespace OrderPizza
             }
         }
 
+        public List<string> GetMenuString()
+        {
+            List<Pizza> pizzas = this.GetMenu();
+            List<string> pizzasString = new();
+            foreach(var pizza in pizzas)
+            { 
+                pizzasString.Add($"{pizza.Name} S:{pizza.DefaultPrice * ((double)Size.Small) / 100} " + 
+                                 $"M:{pizza.DefaultPrice * ((double)Size.Medium) / 100} " + 
+                                 $"L:{pizza.DefaultPrice * ((double)Size.Large) / 100} LE");
+            } 
+            return pizzasString;
+        }
+
         public List<Pizza> DefaultMenu()
         {
-            Pizza pepperoniPizza = new("Pepperoni", new(){new("pepperoni", 25), new("Cheese", 15)}, new("n/a", 0));
-            Pizza chickenRanchPizza = new("Chicken Ranch", new(){new("Chicken", 25), new("Cheese", 15), new("Ranch", 5)}, new("n/a", 0));
-            Pizza margheritaPizza = new("Margherita", new(){new("Extra Cheese", 30)}, new("n/a", 0));
-            Pizza seaFoodPizza = new("Sea Food", new(){new("Shrimp", 40), new("Cheese", 15), new("Calamari", 30)}, new("n/a", 0));
-            List<Pizza> menu = new(){pepperoniPizza, chickenRanchPizza, margheritaPizza, seaFoodPizza};
+            Pizza pepperoniPizza = new("Pepperoni", new(){new("pepperoni", 25), new("Cheese", 15)}, "Unspecified");
+            Pizza chickenRanchPizza = new("Chicken Ranch", new(){new("Chicken", 25), new("Cheese", 15), new("Ranch", 5)}, "Unspecified");
+            Pizza margheritaPizza = new("Margherita", new(){new("Extra Cheese", 30)}, "Unspecified");
+            Pizza seaFoodPizza = new("Sea Food", new(){new("Shrimp", 40), new("Cheese", 15), new("Calamari", 30)}, "Unspecified");
+            List<Pizza> menu = new(){pepperoniPizza, chickenRanchPizza, margheritaPizza, seaFoodPizza}; 
             string jsonData = JsonSerializer.Serialize(menu);
             File.WriteAllText(_menu, jsonData);
             return menu;
         }
 
-        public bool SaveCustomOrder(Pizza pizza)
+        public void SaveOrder(Order order)
         {
-            string jsonData = JsonSerializer.Serialize(pizza);
-            if(File.Exists($"Orders/{pizza.Name}.json"))
+            string jsonData = JsonSerializer.Serialize(order, new JsonSerializerOptions { WriteIndented = true });
+            if(File.Exists($"Orders/{order.CustomerName}.json"))
             {
-                return false;
+                File.WriteAllText($"Orders/{order.CustomerName}1.json", jsonData);
             }
             else
             {
-                File.WriteAllText($"Orders/{pizza.Name}.json", jsonData);
-                return true;
+                File.WriteAllText($"Orders/{order.CustomerName}.json", jsonData);
             }
         }
 
@@ -62,6 +82,17 @@ namespace OrderPizza
                 Console.WriteLine("Failed to read file");
                 return DefaultToppings();
             }
+        }
+
+        public List<String> GetToppingsString()
+        {
+            List<Topping> toppings = this.GetToppings();
+            List<string> toppingsString = new();
+            foreach(var topping in toppings)
+            {
+                toppingsString.Add($"{topping.Name} {topping.Price} LE");
+            } 
+            return toppingsString;
         }
 
         public List<Topping> DefaultToppings()
