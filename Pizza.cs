@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace OrderPizza
 {
-        public class Pizza
+    public class Pizza
     {
         public string Name { get; set; }
         public List<Topping> Toppings { get; set; } = new();

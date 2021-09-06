@@ -8,7 +8,6 @@ namespace OrderPizza
 {
     public enum Size 
     {
-            Unspecified = 0,
             Small = 120,
             Medium = 150,
             Large = 175
@@ -32,19 +31,6 @@ namespace OrderPizza
             }
         }
 
-        public List<string> GetMenuString()
-        {
-            List<Pizza> pizzas = this.GetMenu();
-            List<string> pizzasString = new();
-            foreach(var pizza in pizzas)
-            { 
-                pizzasString.Add($"{pizza.Name} S:{pizza.DefaultPrice * ((double)Size.Small) / 100} " + 
-                                 $"M:{pizza.DefaultPrice * ((double)Size.Medium) / 100} " + 
-                                 $"L:{pizza.DefaultPrice * ((double)Size.Large) / 100} LE");
-            } 
-            return pizzasString;
-        }
-
         public List<Pizza> DefaultMenu()
         {
             Pizza pepperoniPizza = new("Pepperoni", new(){new("pepperoni", 25), new("Cheese", 15)}, "Unspecified");
@@ -60,6 +46,10 @@ namespace OrderPizza
         public void SaveOrder(Order order)
         {
             string jsonData = JsonSerializer.Serialize(order, new JsonSerializerOptions { WriteIndented = true });
+            if (!Directory.Exists("Orders"))
+            {
+                Directory.CreateDirectory("Orders");
+            }
             if(File.Exists($"Orders/{order.CustomerName}.json"))
             {
                 File.WriteAllText($"Orders/{order.CustomerName}1.json", jsonData);
@@ -82,17 +72,6 @@ namespace OrderPizza
                 Console.WriteLine("Failed to read file");
                 return DefaultToppings();
             }
-        }
-
-        public List<String> GetToppingsString()
-        {
-            List<Topping> toppings = this.GetToppings();
-            List<string> toppingsString = new();
-            foreach(var topping in toppings)
-            {
-                toppingsString.Add($"{topping.Name} {topping.Price} LE");
-            } 
-            return toppingsString;
         }
 
         public List<Topping> DefaultToppings()
