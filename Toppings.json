@@ -1,1 +1,38 @@
-[{"Name":"Chicken","Price":25},{"Name":"Calamari","Price":30},{"Name":"Extra cheese","Price":30},{"Name":"Ranch","Price":5},{"Name":"Cheese","Price":15},{"Name":"Pepperoni","Price":25},{"Name":"Barbeque","Price":5},{"Name":"Barbeque","Price":5},{"Name":"Shrimp","Price":40},{"Name":"Sausage","Price":25}]
+[
+  {
+    "name": "Chicken",
+    "price": 25
+  },
+  {
+    "name": "Calamari",
+    "price": 30
+  },
+  {
+    "name": "Extra cheese",
+    "price": 30
+  },
+  {
+    "name": "Ranch",
+    "price": 5
+  },
+  {
+    "name": "Cheese",
+    "price": 15
+  },
+  {
+    "name": "Pepperoni",
+    "price": 25
+  },
+  {
+    "name": "Barbeque",
+    "price": 5
+  },
+  {
+    "name": "Shrimp",
+    "price": 40
+  },
+  {
+    "name": "Sausage",
+    "price": 25
+  }
+]

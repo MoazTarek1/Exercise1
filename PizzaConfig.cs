@@ -38,14 +38,21 @@ namespace OrderPizza
             Pizza margheritaPizza = new("Margherita", new(){new("Extra Cheese", 30)}, "Unspecified");
             Pizza seaFoodPizza = new("Sea Food", new(){new("Shrimp", 40), new("Cheese", 15), new("Calamari", 30)}, "Unspecified");
             List<Pizza> menu = new(){pepperoniPizza, chickenRanchPizza, margheritaPizza, seaFoodPizza}; 
-            string jsonData = JsonSerializer.Serialize(menu);
+            string jsonData = JsonSerializer.Serialize(menu, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
+            });
             File.WriteAllText(_menu, jsonData);
             return menu;
         }
 
         public void SaveOrder(Order order)
         {
-            string jsonData = JsonSerializer.Serialize(order, new JsonSerializerOptions { WriteIndented = true });
+            string jsonData = JsonSerializer.Serialize(order, new JsonSerializerOptions {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
+            });
             if (!Directory.Exists("Orders"))
             {
                 Directory.CreateDirectory("Orders");
@@ -77,16 +84,20 @@ namespace OrderPizza
         public List<Topping> DefaultToppings()
         {
             Topping chicken = new("Chicken", 25);
-            Topping Calamari = new("Calamari", 30);
+            Topping calamari = new("Calamari", 30);
             Topping extraCheese = new("Extra cheese", 30);
-            Topping Ranch = new("Ranch", 5);
-            Topping Cheese = new("Cheese", 15);
-            Topping Pepperoni = new("Pepperoni", 25);
+            Topping ranch = new("Ranch", 5);
+            Topping cheese = new("Cheese", 15);
+            Topping pepperoni = new("Pepperoni", 25);
             Topping barbeque = new("Barbeque", 5);
             Topping shrimp = new("Shrimp", 40);
             Topping sausage = new("Sausage", 25);
-            List<Topping> defaultToppings = new(){chicken, Calamari, extraCheese, Ranch, Cheese, Pepperoni, barbeque, barbeque, shrimp, sausage};
-            string jsonData = JsonSerializer.Serialize(defaultToppings);
+            List<Topping> defaultToppings = new(){chicken, calamari, extraCheese, ranch, cheese, pepperoni, barbeque, shrimp, sausage};
+            string jsonData = JsonSerializer.Serialize(defaultToppings, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
+            });
             File.WriteAllText(_toppings, jsonData);
             return defaultToppings;
         }

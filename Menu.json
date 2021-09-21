@@ -1,1 +1,70 @@
-[{"Name":"Pepperoni","Toppings":[{"Name":"pepperoni","Price":25},{"Name":"Cheese","Price":15}],"PizzaSize":"Unspecified","Price":0,"DefaultPrice":40},{"Name":"Chicken Ranch","Toppings":[{"Name":"Chicken","Price":25},{"Name":"Cheese","Price":15},{"Name":"Ranch","Price":5}],"PizzaSize":"Unspecified","Price":0,"DefaultPrice":45},{"Name":"Margherita","Toppings":[{"Name":"Extra Cheese","Price":30}],"PizzaSize":"Unspecified","Price":0,"DefaultPrice":30},{"Name":"Sea Food","Toppings":[{"Name":"Shrimp","Price":40},{"Name":"Cheese","Price":15},{"Name":"Calamari","Price":30}],"PizzaSize":"Unspecified","Price":0,"DefaultPrice":85}]
+[
+  {
+    "name": "Pepperoni",
+    "toppings": [
+      {
+        "name": "pepperoni",
+        "price": 25
+      },
+      {
+        "name": "Cheese",
+        "price": 15
+      }
+    ],
+    "pizzaSize": "Unspecified",
+    "price": 0,
+    "defaultPrice": 40
+  },
+  {
+    "name": "Chicken Ranch",
+    "toppings": [
+      {
+        "name": "Chicken",
+        "price": 25
+      },
+      {
+        "name": "Cheese",
+        "price": 15
+      },
+      {
+        "name": "Ranch",
+        "price": 5
+      }
+    ],
+    "pizzaSize": "Unspecified",
+    "price": 0,
+    "defaultPrice": 45
+  },
+  {
+    "name": "Margherita",
+    "toppings": [
+      {
+        "name": "Extra Cheese",
+        "price": 30
+      }
+    ],
+    "pizzaSize": "Unspecified",
+    "price": 0,
+    "defaultPrice": 30
+  },
+  {
+    "name": "Sea Food",
+    "toppings": [
+      {
+        "name": "Shrimp",
+        "price": 40
+      },
+      {
+        "name": "Cheese",
+        "price": 15
+      },
+      {
+        "name": "Calamari",
+        "price": 30
+      }
+    ],
+    "pizzaSize": "Unspecified",
+    "price": 0,
+    "defaultPrice": 85
+  }
+]
